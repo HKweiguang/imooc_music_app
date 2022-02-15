@@ -46,12 +46,7 @@ public class CommonJsonCallback implements Callback {
     @Override
     public void onResponse(Call call, Response response) throws IOException {
         final String result = response.body().string();
-        mDeliveryHandler.post(new Runnable() {
-            @Override
-            public void run() {
-                handleRespose(result);
-            }
-        });
+        mDeliveryHandler.post(() -> handleRespose(result));
     }
 
     private void handleRespose(String result) {

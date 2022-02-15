@@ -8,7 +8,6 @@ public class DisposeDataHandle
 {
 	public DisposeDataListener mListener;
 	public Class<?> mClass = null;
-	// 文件保存路径
 	public String mSource = null;
 
 	public DisposeDataHandle(DisposeDataListener listener)
