@@ -12,7 +12,8 @@ import okhttp3.RequestBody;
 
 public class CommonRequest {
 
-    public static Request createPostRequest(String url, RequestParams params) {
+    public static Request createPostRequest(String url, RequestParams params)
+    {
         return createPostRequest(url, params, null);
     }
 
