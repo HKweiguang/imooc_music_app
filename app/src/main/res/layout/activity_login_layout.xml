@@ -19,17 +19,15 @@
             android:layout_height="match_parent"
             app:spread_radius="100"
             app:spread_max_radius="90"
-            app:spread_center_color="@android:color/black"
-            app:spread_spread_color="@android:color/white"
             app:spread_distance="2"
             app:spread_delay_milliseconds="150"/>
 
-<!--        <com.imooc.lib_common_ui.circle_image_view.CircleImageView-->
-<!--            android:layout_width="70dp"-->
-<!--            android:layout_height="70dp"-->
-<!--            android:layout_centerInParent="true"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:src="@mipmap/ic_launcher" />-->
+        <com.imooc.lib_common_ui.circle_image_view.CircleImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:src="@mipmap/ic_launcher" />
     </RelativeLayout>
 
     <TextView

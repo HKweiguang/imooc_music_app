@@ -75,8 +75,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         initMagicIndicator();
 
         unLogginLayout = findViewById(R.id.unloggin_layout);
-        LoginActivity.start(this);
         mPhotoView = findViewById(R.id.avatr_view);
+        unLogginLayout.setOnClickListener(this);
     }
 
     /**

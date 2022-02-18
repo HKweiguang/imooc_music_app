@@ -1,4 +1,4 @@
-package com.imooc.lib_audio.core;
+package com.imooc.lib_audio.mediaplayer.core;
 
 import android.media.MediaPlayer;
 
