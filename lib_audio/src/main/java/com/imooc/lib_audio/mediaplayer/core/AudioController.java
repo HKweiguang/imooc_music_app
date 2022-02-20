@@ -1,5 +1,7 @@
 package com.imooc.lib_audio.mediaplayer.core;
 
+import com.imooc.lib_audio.mediaplayer.db.GreenDaoHelper;
+import com.imooc.lib_audio.mediaplayer.events.AudioFavouriteEvent;
 import com.imooc.lib_audio.mediaplayer.events.AudioPlayModeEvent;
 import com.imooc.lib_audio.mediaplayer.exception.AudioQueueEmptyException;
 import com.imooc.lib_audio.mediaplayer.model.AudioBean;
@@ -9,6 +11,11 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * 音频控制中心
+ *
+ * 保存、处理播放列表，处理收藏音乐功能
+ */
 public class AudioController {
 
     public static AudioController getInstance() {
@@ -41,7 +48,7 @@ public class AudioController {
     //播放队列,不能为空,不设置主动抛错
     private final ArrayList<AudioBean> mQueue;
     private int mQueueIndex;
-    private PlayMode mPlayMode = PlayMode.LOOP;
+    private PlayMode mPlayMode;
 
     private AudioController() {
         EventBus.getDefault().register(this);
@@ -249,6 +256,21 @@ public class AudioController {
                 return getPlaying();
         }
         return getPlaying();
+    }
+
+    /**
+     * 添加/移除到收藏
+     */
+    public void changeFavourite() {
+        if (null != GreenDaoHelper.selectFavourite(getNowPlaying())) {
+            // 已收藏，移除
+            GreenDaoHelper.removeFavourite(getNowPlaying());
+            EventBus.getDefault().post(new AudioFavouriteEvent(false));
+        } else {
+            // 未收藏，添加收藏
+            GreenDaoHelper.addFavourite(getNowPlaying());
+            EventBus.getDefault().post(new AudioFavouriteEvent(true));
+        }
     }
 
     private void load(AudioBean bean) {

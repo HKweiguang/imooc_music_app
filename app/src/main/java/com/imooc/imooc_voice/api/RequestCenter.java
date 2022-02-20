@@ -3,7 +3,7 @@ package com.imooc.imooc_voice.api;
 import com.imooc.imooc_voice.view.login.user.User;
 import com.imooc.lib_network.listener.DisposeDataHandle;
 import com.imooc.lib_network.listener.DisposeDataListener;
-import com.imooc.lib_network.okhttp.CommonOkHttpClient;
+import com.imooc.lib_network.CommonOkHttpClient;
 import com.imooc.lib_network.request.CommonRequest;
 import com.imooc.lib_network.request.RequestParams;
 

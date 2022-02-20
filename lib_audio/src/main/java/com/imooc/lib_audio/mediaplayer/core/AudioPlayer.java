@@ -21,6 +21,11 @@ import com.imooc.lib_audio.mediaplayer.model.AudioBean;
 
 import org.greenrobot.eventbus.EventBus;
 
+/**
+ * 音乐播放器
+ *
+ * 控制音乐加载、播放等功能，处理回调并发送事件
+ */
 public class AudioPlayer implements MediaPlayer.OnCompletionListener,
         MediaPlayer.OnBufferingUpdateListener, MediaPlayer.OnPreparedListener,
         MediaPlayer.OnErrorListener, AudioFocusManager.AudioFocusListener {

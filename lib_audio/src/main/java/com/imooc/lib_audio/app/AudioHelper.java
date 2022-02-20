@@ -3,6 +3,8 @@ package com.imooc.lib_audio.app;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
+import com.imooc.lib_audio.mediaplayer.db.GreenDaoHelper;
+
 @SuppressLint("StaticFieldLeak")
 public class AudioHelper {
 
@@ -12,7 +14,7 @@ public class AudioHelper {
     public static void init(Context context) {
         mContext = context;
         //初始化本地数据库
-//        GreenDaoHelper.initDatabase();
+        GreenDaoHelper.initDatabase();
     }
 
     public static Context getContext() {

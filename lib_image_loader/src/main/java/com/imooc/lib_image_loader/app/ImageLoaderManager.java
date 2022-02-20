@@ -126,9 +126,7 @@ public class ImageLoaderManager {
      */
     private NotificationTarget initNotificationTarget(Context context, int id, RemoteViews rv,
                                                       Notification notification, int NOTIFICATION_ID) {
-        NotificationTarget notificationTarget =
-                new NotificationTarget(context, id, rv, notification, NOTIFICATION_ID);
-        return notificationTarget;
+        return new NotificationTarget(context, id, rv, notification, NOTIFICATION_ID);
     }
 
     @SuppressLint("CheckResult")

@@ -2,6 +2,7 @@ package com.imooc.lib_audio.mediaplayer.view;
 
 import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -60,6 +61,7 @@ public class BottomMusicView extends RelativeLayout {
         @SuppressLint("InflateParams") View rootView = LayoutInflater.from(mContext).inflate(R.layout.bottom_view, null);
         rootView.setOnClickListener(v -> {
             //跳到音乐播放Activitity
+            MusicPlayerActivity.start((Activity) mContext);
         });
 
         mLeftView = rootView.findViewById(R.id.album_view);
@@ -83,7 +85,8 @@ public class BottomMusicView extends RelativeLayout {
         });
     }
 
-    @Override protected void onDetachedFromWindow() {
+    @Override
+    protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         EventBus.getDefault().unregister(this);
     }

@@ -4,6 +4,11 @@ import android.media.MediaPlayer;
 
 import java.io.IOException;
 
+/**
+ * 自定义媒体播放器
+ *
+ * 保存播放器状态，并处理回调
+ */
 public class CustomMediaPlayer extends MediaPlayer implements MediaPlayer.OnCompletionListener {
 
     public enum Status {

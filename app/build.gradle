@@ -28,8 +28,10 @@ android {
 }
 
 dependencies {
-
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation rootProject.depsLibs.appcompact
+    implementation rootProject.depsLibs.design
+    implementation rootProject.depsLibs.recyclerview
+    implementation rootProject.depsLibs.constraint
     //eventbus类库依赖
     implementation rootProject.depsLibs.eventbus
     //greendao类库依赖
