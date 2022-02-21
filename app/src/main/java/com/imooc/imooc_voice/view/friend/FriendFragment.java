@@ -81,7 +81,7 @@ public class FriendFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     @Override
     public void onLoadMoreRequested() {
-
+        loadMore();
     }
 
     private void loadMore() {
