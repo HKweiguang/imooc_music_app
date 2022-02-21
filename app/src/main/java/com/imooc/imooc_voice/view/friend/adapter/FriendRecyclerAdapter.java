@@ -1,4 +1,4 @@
-package com.imooc.imooc_voice.model.friend.adapter;
+package com.imooc.imooc_voice.view.friend.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -94,22 +94,19 @@ public class FriendRecyclerAdapter extends MultiItemTypeAdapter {
 
         @Override
         public void convert(ViewHolder holder, FriendBodyValue recommandBodyValue, int position) {
-//            RelativeLayout videoGroup = holder.getView(R.id.video_layout);
+            RelativeLayout videoGroup = holder.getView(R.id.video_layout);
 //            VideoAdContext mAdsdkContext = new VideoAdContext(videoGroup, recommandBodyValue.videoUrl);
-//            holder.setText(R.id.fansi_view, recommandBodyValue.fans + "粉丝");
-//            holder.setText(R.id.name_view, recommandBodyValue.name + " 分享视频");
-//            holder.setText(R.id.text_view, recommandBodyValue.text);
-//            holder.setOnClickListener(R.id.guanzhu_view, new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (!UserManager.getInstance().hasLogined()) {
-//                        //goto login
-//                        LoginActivity.start(mContext);
-//                    }
-//                }
-//            });
-//            ImageView avatar = holder.getView(R.id.photo_view);
-//            ImageLoaderManager.getInstance().displayImageForCircle(avatar, recommandBodyValue.avatr);
+            holder.setText(R.id.fansi_view, recommandBodyValue.fans + "粉丝");
+            holder.setText(R.id.name_view, recommandBodyValue.name + " 分享视频");
+            holder.setText(R.id.text_view, recommandBodyValue.text);
+            holder.setOnClickListener(R.id.guanzhu_view, v -> {
+                if (!UserManager.getInstance().hasLogined()) {
+                    //goto login
+                    LoginActivity.start(mContext);
+                }
+            });
+            ImageView avatar = holder.getView(R.id.photo_view);
+            ImageLoaderManager.getInstance().displayImageForCircle(avatar, recommandBodyValue.avatr);
         }
     }
 }

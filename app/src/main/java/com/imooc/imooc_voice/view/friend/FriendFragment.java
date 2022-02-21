@@ -17,7 +17,7 @@ import com.imooc.imooc_voice.R;
 import com.imooc.imooc_voice.api.RequestCenter;
 import com.imooc.imooc_voice.model.friend.BaseFriendModel;
 import com.imooc.imooc_voice.model.friend.FriendBodyValue;
-import com.imooc.imooc_voice.model.friend.adapter.FriendRecyclerAdapter;
+import com.imooc.imooc_voice.view.friend.adapter.FriendRecyclerAdapter;
 import com.imooc.lib_common_ui.recyclerview.wrapper.LoadMoreWrapper;
 import com.imooc.lib_network.listener.DisposeDataListener;
 
