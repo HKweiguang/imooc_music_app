@@ -28,6 +28,7 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.depsLibs.appcompact
     implementation rootProject.depsLibs.design
     implementation rootProject.depsLibs.recyclerview

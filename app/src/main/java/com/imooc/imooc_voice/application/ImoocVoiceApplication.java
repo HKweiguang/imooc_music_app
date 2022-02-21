@@ -3,6 +3,7 @@ package com.imooc.imooc_voice.application;
 import android.app.Application;
 
 import com.imooc.lib_audio.app.AudioHelper;
+import com.imooc.lib_share.ShareManager;
 
 public class ImoocVoiceApplication extends Application {
 
@@ -21,7 +22,7 @@ public class ImoocVoiceApplication extends Application {
         //音频SDK初始化
         AudioHelper.init(this);
         //分享SDK初始化
-//        ShareManager.initSDK(this);
+        ShareManager.init(this);
         //更新组件下载
 //        UpdateHelper.init(this);
         //ARouter初始化
