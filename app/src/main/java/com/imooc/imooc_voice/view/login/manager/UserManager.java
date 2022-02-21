@@ -62,7 +62,7 @@ public class UserManager {
      *
      * @return true-是; false-否
      */
-    public boolean hasLogin() {
+    public boolean hasLogined() {
         return getUser() != null;
     }
 

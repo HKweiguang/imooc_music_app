@@ -58,13 +58,6 @@ public class AudioController {
         mPlayMode = PlayMode.LOOP;
     }
 
-    private void addCustomAudio(int index, AudioBean bean) {
-        if (mQueue == null) {
-            throw new AudioQueueEmptyException("当前播放队列为空,请先设置播放队列.");
-        }
-        mQueue.add(index, bean);
-    }
-
     private int queryAudio(AudioBean bean) {
         return mQueue.indexOf(bean);
     }
@@ -90,6 +83,13 @@ public class AudioController {
      */
     public void addAudio(AudioBean bean) {
         this.addAudio(0, bean);
+    }
+
+    private void addCustomAudio(int index, AudioBean bean) {
+        if (mQueue == null) {
+            throw new AudioQueueEmptyException("当前播放队列为空,请先设置播放队列.");
+        }
+        mQueue.add(index, bean);
     }
 
     public void addAudio(int index, AudioBean bean) {

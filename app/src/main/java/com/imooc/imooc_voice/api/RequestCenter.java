@@ -1,9 +1,10 @@
 package com.imooc.imooc_voice.api;
 
+import com.imooc.imooc_voice.model.friend.BaseFriendModel;
 import com.imooc.imooc_voice.view.login.user.User;
+import com.imooc.lib_network.CommonOkHttpClient;
 import com.imooc.lib_network.listener.DisposeDataHandle;
 import com.imooc.lib_network.listener.DisposeDataListener;
-import com.imooc.lib_network.CommonOkHttpClient;
 import com.imooc.lib_network.request.CommonRequest;
 import com.imooc.lib_network.request.RequestParams;
 
@@ -13,7 +14,7 @@ import com.imooc.lib_network.request.RequestParams;
 public class RequestCenter {
 
     static class HttpConstants {
-//        private static final String ROOT_URL = "http://imooc.com/api";
+        //        private static final String ROOT_URL = "http://imooc.com/api";
         private static final String ROOT_URL = "http://39.97.122.129";
 
         /**
@@ -38,6 +39,23 @@ public class RequestCenter {
                 createGetRequest(url, params), new DisposeDataHandle(listener, clazz));
     }
 
+    /**
+     * 用户登陆请求
+     */
+    public static void login(DisposeDataListener listener) {
+        RequestParams params = new RequestParams();
+        params.put("mb", "18734924592");
+        params.put("pwd", "999999q");
+        RequestCenter.getRequest(HttpConstants.LOGIN, params, listener, User.class);
+    }
+
+    /**
+     * 朋友页面请求
+     */
+    public static void requestFriendData(DisposeDataListener listener) {
+        RequestCenter.getRequest(HttpConstants.HOME_FRIEND, null, listener, BaseFriendModel.class);
+    }
+
 //    public static void requestRecommandData(DisposeDataListener listener) {
 //        RequestCenter.getRequest(HttpConstants.HOME_RECOMMAND, null, listener,
 //                BaseRecommandModel.class);
@@ -48,17 +66,4 @@ public class RequestCenter {
 //                BaseRecommandMoreModel.class);
 //    }
 //
-//    public static void requestFriendData(DisposeDataListener listener) {
-//        RequestCenter.getRequest(HttpConstants.HOME_FRIEND, null, listener, BaseFriendModel.class);
-//    }
-
-    /**
-     * 用户登陆请求
-     */
-    public static void login(DisposeDataListener listener) {
-        RequestParams params = new RequestParams();
-        params.put("mb", "18734924592");
-        params.put("pwd", "999999q");
-        RequestCenter.getRequest(HttpConstants.LOGIN, params, listener, User.class);
-    }
 }
