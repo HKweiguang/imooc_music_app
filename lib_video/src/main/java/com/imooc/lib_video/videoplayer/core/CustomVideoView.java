@@ -198,6 +198,22 @@ public class CustomVideoView extends RelativeLayout implements MediaPlayer.OnPre
     }
 
     @Override
+    public void onClick(View v) {
+        if (v == mMiniPlayBtn) {
+            if (this.playerState == STATE_PAUSING) {
+                resume();
+                listener.onClickPlay();
+            } else {
+                load();
+            }
+        } else if (v == this.mFullBtn) {
+            listener.onClickFullScreenBtn();
+        } else if (v == mVideoView) {
+            listener.onClickVideo();
+        }
+    }
+
+    @Override
     protected void onVisibilityChanged(@NonNull View changedView, int visibility) {
         super.onVisibilityChanged(changedView, visibility);
         if (visibility == VISIBLE && playerState == STATE_PAUSING) {
@@ -213,27 +229,45 @@ public class CustomVideoView extends RelativeLayout implements MediaPlayer.OnPre
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-
+        // 加载成功
+        showPlayView();
+        if (mediaPlayer != null) {
+            mCurrentCount = 0;
+            setCurrentPlayState(STATE_PLAYING);
+            resume();
+            if (listener != null) listener.onAdVideoLoadSuccess();
+        }
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-
+        // 播放完毕
+        playBack();
+        setIsComplete(true);
+        setIsRealPause(true);
+        if (listener != null) listener.onAdVideoLoadComplete();
     }
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
+        setCurrentPlayState(STATE_ERROR);
+        if (mCurrentCount >= LOAD_TOTAL_COUNT) {
+            showPlayOrPauseView(false);
+            if (this.listener != null) {
+                listener.onAdVideoLoadFailed();
+            }
+        }
+        this.stop();//去重新load
         return false;
     }
 
     @Override
-    public void onClick(View v) {
-
-    }
-
-    @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {
-
+        // surface 可用
+        videoSurface = new Surface(surface);
+        checkMediaPlayer();
+        mediaPlayer.setSurface(videoSurface);
+        load();
     }
 
     @Override
@@ -401,6 +435,7 @@ public class CustomVideoView extends RelativeLayout implements MediaPlayer.OnPre
             //主动锁屏时 pause, 主动解锁屏幕时，resume
             switch (Objects.requireNonNull(intent.getAction())) {
                 case Intent.ACTION_USER_PRESENT:
+                    // 亮屏事件
                     if (playerState == STATE_PAUSING) {
                         if (mIsRealPause) {
                             //手动点的暂停，回来后还暂停
@@ -411,6 +446,7 @@ public class CustomVideoView extends RelativeLayout implements MediaPlayer.OnPre
                     }
                     break;
                 case Intent.ACTION_SCREEN_OFF:
+                    // 灭屏事件
                     if (playerState == STATE_PLAYING) {
                         pause();
                     }
