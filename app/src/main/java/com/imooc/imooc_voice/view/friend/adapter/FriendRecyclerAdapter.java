@@ -16,6 +16,7 @@ import com.imooc.lib_common_ui.recyclerview.MultiItemTypeAdapter;
 import com.imooc.lib_common_ui.recyclerview.base.ItemViewDelegate;
 import com.imooc.lib_common_ui.recyclerview.base.ViewHolder;
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
+import com.imooc.lib_video.videoplayer.core.VideoAdContext;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class FriendRecyclerAdapter extends MultiItemTypeAdapter {
         super(context, datas);
         mContext = context;
         addItemViewDelegate(MUSIC_TYPE, new MusicItemDelegate());
-//        addItemViewDelegate(VIDEO_TYPE, new VideoItemDelegate());
+        addItemViewDelegate(VIDEO_TYPE, new VideoItemDelegate());
     }
 
     /**
@@ -95,7 +96,7 @@ public class FriendRecyclerAdapter extends MultiItemTypeAdapter {
         @Override
         public void convert(ViewHolder holder, FriendBodyValue recommandBodyValue, int position) {
             RelativeLayout videoGroup = holder.getView(R.id.video_layout);
-//            VideoAdContext mAdsdkContext = new VideoAdContext(videoGroup, recommandBodyValue.videoUrl);
+            VideoAdContext mAdsdkContext = new VideoAdContext(videoGroup, recommandBodyValue.videoUrl);
             holder.setText(R.id.fansi_view, recommandBodyValue.fans + "粉丝");
             holder.setText(R.id.name_view, recommandBodyValue.name + " 分享视频");
             holder.setText(R.id.text_view, recommandBodyValue.text);

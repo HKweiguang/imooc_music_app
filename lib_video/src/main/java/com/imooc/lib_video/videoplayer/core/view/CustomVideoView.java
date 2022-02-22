@@ -1,4 +1,4 @@
-package com.imooc.lib_video.videoplayer.core;
+package com.imooc.lib_video.videoplayer.core.view;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -41,7 +41,7 @@ public class CustomVideoView extends RelativeLayout implements MediaPlayer.OnPre
     private Button mMiniPlayBtn;
     private ImageView mFullBtn;
     private ImageView mLoadingBar;
-    private AudioManager audioManager;
+    private final AudioManager audioManager;
     private Surface videoSurface;
 
     /**
@@ -376,6 +376,20 @@ public class CustomVideoView extends RelativeLayout implements MediaPlayer.OnPre
             }
         }
         this.showPlayOrPauseView(false);
+    }
+
+    //全屏不显示暂停状态,后续可以整合，不必单独出一个方法
+    public void pauseForFullScreen() {
+        if (playerState != STATE_PLAYING) {
+            return;
+        }
+        setCurrentPlayState(STATE_PAUSING);
+        if (isPlaying()) {
+            mediaPlayer.pause();
+            if (!this.canPlay) {
+                mediaPlayer.seekTo(0);
+            }
+        }
     }
 
     public void stop() {
