@@ -27,6 +27,7 @@ import com.imooc.imooc_voice.view.login.user.LoginEvent;
 import com.imooc.lib_audio.app.AudioHelper;
 import com.imooc.lib_audio.mediaplayer.model.AudioBean;
 import com.imooc.lib_common_ui.base.BaseActivity;
+import com.imooc.lib_common_ui.base.constant.Constant;
 import com.imooc.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView;
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
 
@@ -44,7 +45,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
-import lib_update.app.UpdateHelper;
+import com.imooc.lib_update.app.UpdateHelper;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -63,6 +64,8 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     private HomePagerAdapter mAdapter;
     private View unLogginLayout;
     private ImageView mPhotoView;
+    private View mDrawerQrcodeView;
+    private View mDrawerShareView;
 
     /*
      * data
@@ -108,16 +111,23 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mToggleView = findViewById(R.id.toggle_view);
         mSearchView = findViewById(R.id.search_view);
         mViewPager = findViewById(R.id.view_pager);
+        mDrawerQrcodeView = findViewById(R.id.home_qrcode);
+        mDrawerShareView = findViewById(R.id.home_music);
+        unLogginLayout = findViewById(R.id.unloggin_layout);
+        mPhotoView = findViewById(R.id.avatr_view);
+
         mToggleView.setOnClickListener(this);
         mSearchView.setOnClickListener(this);
+        mDrawerQrcodeView.setOnClickListener(this);
+        mDrawerShareView.setOnClickListener(this);
+        findViewById(R.id.online_music_view).setOnClickListener(this);
+        findViewById(R.id.check_update_view).setOnClickListener(this);
+        unLogginLayout.setOnClickListener(this);
+        findViewById(R.id.exit_layout).setOnClickListener(this);
 
         mAdapter = new HomePagerAdapter(getSupportFragmentManager(), CHANNELS);
         mViewPager.setAdapter(mAdapter);
         initMagicIndicator();
-
-        unLogginLayout = findViewById(R.id.unloggin_layout);
-        mPhotoView = findViewById(R.id.avatr_view);
-        unLogginLayout.setOnClickListener(this);
     }
 
     /**
@@ -175,6 +185,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.exit_layout:
+                finish();
+                System.exit(0);
+                break;
             case R.id.unloggin_layout:
                 if (!UserManager.getInstance().hasLogined()) {
                     LoginActivity.start(this);
@@ -189,7 +203,46 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                     mDrawerLayout.openDrawer(Gravity.LEFT);
                 }
                 break;
+            case R.id.home_qrcode:
+                if (hasPermission(Constant.HARDWEAR_CAMERA_PERMISSION)) {
+                    doCameraPermission();
+                } else {
+                    requestPermission(Constant.HARDWEAR_CAMERA_CODE, Constant.HARDWEAR_CAMERA_PERMISSION);
+                }
+                break;
+            case R.id.home_music:
+                //shareFriend();
+                goToMusic();
+                break;
+            case R.id.online_music_view:
+                //跳到指定webactivity
+                gotoWebView("https://www.imooc.com");
+                break;
+            case R.id.check_update_view:
+                checkUpdate();
+                break;
         }
+    }
+
+    @Override
+    public void doCameraPermission() {
+//        ARouter.getInstance().build(Constant.Router.ROUTER_CAPTURE_ACTIVIYT).navigation();
+    }
+
+    private void goToMusic() {
+//        ARouter.getInstance().build(Constant.Router.ROUTER_MUSIC_ACTIVIYT).navigation();
+    }
+
+    private void gotoWebView(String url) {
+//        ARouter.getInstance()
+//                .build(Constant.Router.ROUTER_WEB_ACTIVIYT)
+//                .withString("url", url)
+//                .navigation();
+    }
+
+    //启动检查更新
+    private void checkUpdate() {
+        UpdateHelper.checkUpdate(this);
     }
 
     @Override
