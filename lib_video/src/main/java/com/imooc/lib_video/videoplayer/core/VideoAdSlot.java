@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.imooc.lib_base.service.audio.AudioService;
 import com.imooc.lib_video.videoplayer.core.view.CustomVideoView;
 import com.imooc.lib_video.videoplayer.core.view.VideoFullDialog;
 import com.imooc.lib_video.videoplayer.utils.Utils;
@@ -20,11 +23,14 @@ public class VideoAdSlot implements CustomVideoView.ADVideoPlayerListener {
     /**
      * Data
      */
+    @Autowired(name = "/audio/audio_service")
+    protected AudioService mAudioService;
     private String mVideoUrl;
     // 与context层的事件回调
     private SDKSlotListener mSlotListener;
 
     public VideoAdSlot(String videoUrl, SDKSlotListener slotListener) {
+        ARouter.getInstance().inject(this);
         this.mVideoUrl = videoUrl;
         this.mSlotListener = slotListener;
         mParentView = slotListener.getAdParent();
@@ -106,16 +112,20 @@ public class VideoAdSlot implements CustomVideoView.ADVideoPlayerListener {
 
     /**
      * 全屏返回小屏继续播放事件
+     *
      * @param position 播放位置
      */
     private void backToSmallMode(int position) {
         if (mVideoView.getParent() == null) {
             mParentView.addView(mVideoView);
         }
+        mVideoView.setTranslationY(0);
         mVideoView.isShowFullBtn(true);
         mVideoView.mute(true);
         mVideoView.setListener(this);
         mVideoView.seekAndResume(position);
+        // 小屏恢复音乐播放
+        mAudioService.resumeAudio();
     }
 
     /**
@@ -129,6 +139,8 @@ public class VideoAdSlot implements CustomVideoView.ADVideoPlayerListener {
         mVideoView.mute(true);
         mVideoView.setListener(this);
         mVideoView.seekAndPause(0);
+        // 全屏暂停音乐播放
+        mAudioService.pauseAudio();
     }
 
     @Override

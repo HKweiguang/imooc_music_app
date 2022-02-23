@@ -158,7 +158,7 @@ public class VideoFullDialog extends Dialog implements CustomVideoView.ADVideoPl
     //准备动画所需数据
     private void prepareScene() {
         mEndBundle = Utils.getViewProperty(mVideoView);
-        /**
+        /*
          * 将desationview移到originalview位置处
          */
         deltaY = (mStartBundle.getInt(Utils.PROPNAME_SCREENLOCATION_TOP) - mEndBundle.getInt(
