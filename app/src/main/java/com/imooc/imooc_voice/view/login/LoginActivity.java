@@ -8,7 +8,9 @@ import android.view.View;
 
 import com.imooc.imooc_voice.R;
 import com.imooc.imooc_voice.api.RequestCenter;
+import com.imooc.imooc_voice.view.login.inter.IUserLoginView;
 import com.imooc.imooc_voice.view.login.manager.UserManager;
+import com.imooc.imooc_voice.view.login.presenter.UserLoginPresenter;
 import com.imooc.imooc_voice.view.login.user.LoginEvent;
 import com.imooc.imooc_voice.view.login.user.User;
 import com.imooc.lib_common_ui.base.BaseActivity;
@@ -16,39 +18,58 @@ import com.imooc.lib_network.listener.DisposeDataListener;
 
 import org.greenrobot.eventbus.EventBus;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener, DisposeDataListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, IUserLoginView {
 
     public static void start(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
     }
 
+    private UserLoginPresenter mUserLoginPresenter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_layout);
-
+        //初始化P层
+        mUserLoginPresenter = new UserLoginPresenter(this);
         findViewById(R.id.login_view).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.login_view) {
-            RequestCenter.login(this);
+            mUserLoginPresenter.login(getUserName(), getPassword());
         }
     }
 
     @Override
-    public void onSuccess(Object responseObj) {
-        User user = (User) responseObj;
-        UserManager.getInstance().saveUser(user);
-        //发送登陆Event
-        EventBus.getDefault().post(new LoginEvent());
-        finish();
+    public String getUserName() {
+        return "18734924592";
     }
 
     @Override
-    public void onFailure(Object reasonObj) {
+    public String getPassword() {
+        return "999999q";
+    }
 
+    @Override
+    public void showLoginFailedView() {
+
+    }
+
+    @Override
+    public void showLoadingView() {
+
+    }
+
+    @Override
+    public void hideLoadingView() {
+
+    }
+
+    @Override
+    public void finishActivity() {
+        finish();
     }
 }

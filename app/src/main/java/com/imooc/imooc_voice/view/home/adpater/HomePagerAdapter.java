@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.imooc.imooc_voice.model.CHANNEL;
-import com.imooc.imooc_voice.view.VideoFragment;
 import com.imooc.imooc_voice.view.discory.DiscoryFragment;
 import com.imooc.imooc_voice.view.friend.FriendFragment;
 import com.imooc.imooc_voice.view.mine.MineFragment;
@@ -29,8 +28,6 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
                 return DiscoryFragment.newInstance();
             case CHANNEL.FRIEND_ID:
                 return FriendFragment.newInstance();
-            case CHANNEL.VIDEO_ID:
-                return VideoFragment.newInstance();
         }
         return null;
     }
