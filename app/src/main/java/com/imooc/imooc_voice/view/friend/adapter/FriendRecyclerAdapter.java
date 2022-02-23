@@ -2,14 +2,11 @@ package com.imooc.imooc_voice.view.friend.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.imooc.imooc_voice.R;
 import com.imooc.imooc_voice.model.friend.FriendBodyValue;
-import com.imooc.imooc_voice.view.login.LoginActivity;
-import com.imooc.imooc_voice.view.login.manager.UserManager;
 import com.imooc.lib_audio.app.AudioHelper;
 import com.imooc.lib_common_ui.MultiImageViewLayout;
 import com.imooc.lib_common_ui.recyclerview.MultiItemTypeAdapter;
@@ -62,10 +59,10 @@ public class FriendRecyclerAdapter extends MultiItemTypeAdapter {
                 AudioHelper.addAudio((Activity) mContext, recommandBodyValue.audioBean);
             });
             holder.setOnClickListener(R.id.guanzhu_view, v -> {
-                    if (!UserManager.getInstance().hasLogined()) {
-                    //goto login
-                    LoginActivity.start(mContext);
-                }
+//                    if (!UserManager.getInstance().hasLogined()) {
+//                    // todo goto login
+//                    LoginActivity.start(mContext);
+//                }
             });
             ImageView avatar = holder.getView(R.id.photo_view);
             ImageLoaderManager.getInstance().displayImageForCircle(avatar, recommandBodyValue.avatr);
@@ -101,10 +98,10 @@ public class FriendRecyclerAdapter extends MultiItemTypeAdapter {
             holder.setText(R.id.name_view, recommandBodyValue.name + " 分享视频");
             holder.setText(R.id.text_view, recommandBodyValue.text);
             holder.setOnClickListener(R.id.guanzhu_view, v -> {
-                if (!UserManager.getInstance().hasLogined()) {
-                    //goto login
-                    LoginActivity.start(mContext);
-                }
+//                if (!UserManager.getInstance().hasLogined()) {
+                    // todo goto login
+//                    LoginActivity.start(mContext);
+//                }
             });
             ImageView avatar = holder.getView(R.id.photo_view);
             ImageLoaderManager.getInstance().displayImageForCircle(avatar, recommandBodyValue.avatr);

@@ -1,6 +1,6 @@
-package com.imooc.imooc_voice.view.login.manager;
+package com.imooc.ft_login.manager;
 
-import com.imooc.imooc_voice.view.login.user.User;
+import com.imooc.lib_base.ft_login.model.user.User;
 
 public class UserManager {
 

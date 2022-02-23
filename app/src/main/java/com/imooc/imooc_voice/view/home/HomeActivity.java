@@ -24,11 +24,9 @@ import com.imooc.imooc_voice.constant.Constant;
 import com.imooc.imooc_voice.model.CHANNEL;
 import com.imooc.imooc_voice.utils.Utils;
 import com.imooc.imooc_voice.view.home.adpater.HomePagerAdapter;
-import com.imooc.imooc_voice.view.login.LoginActivity;
-import com.imooc.imooc_voice.view.login.manager.UserManager;
-import com.imooc.imooc_voice.view.login.user.LoginEvent;
 import com.imooc.lib_audio.app.AudioHelper;
 import com.imooc.lib_audio.mediaplayer.model.AudioBean;
+import com.imooc.lib_base.ft_login.model.LoginEvent;
 import com.imooc.lib_common_ui.base.BaseActivity;
 import com.imooc.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView;
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
@@ -190,13 +188,14 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 finish();
                 System.exit(0);
                 break;
-            case R.id.unloggin_layout:
-                if (!UserManager.getInstance().hasLogined()) {
-                    LoginActivity.start(this);
-                } else {
-                    mDrawerLayout.closeDrawer(Gravity.LEFT);
-                }
-                break;
+                // todo
+//            case R.id.unloggin_layout:
+//                if (!UserManager.getInstance().hasLogined()) {
+//                    LoginActivity.start(this);
+//                } else {
+//                    mDrawerLayout.closeDrawer(Gravity.LEFT);
+//                }
+//                break;
             case R.id.toggle_view:
                 if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
                     mDrawerLayout.closeDrawer(Gravity.LEFT);
@@ -262,8 +261,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     public void onLoginEvent(LoginEvent event) {
         unLogginLayout.setVisibility(View.GONE);
         mPhotoView.setVisibility(View.VISIBLE);
-        ImageLoaderManager.getInstance()
-                .displayImageForCircle(mPhotoView, UserManager.getInstance().getUser().data.photoUrl);
+        // todo
+//        ImageLoaderManager.getInstance()
+//                .displayImageForCircle(mPhotoView, UserManager.getInstance().getUser().data.photoUrl);
     }
 
     private void registerBroadcastReceiver() {

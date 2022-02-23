@@ -3,7 +3,6 @@ package com.imooc.imooc_voice.api;
 import com.imooc.imooc_voice.model.discory.BaseRecommandModel;
 import com.imooc.imooc_voice.model.discory.BaseRecommandMoreModel;
 import com.imooc.imooc_voice.model.friend.BaseFriendModel;
-import com.imooc.imooc_voice.view.login.user.User;
 import com.imooc.lib_network.CommonOkHttpClient;
 import com.imooc.lib_network.listener.DisposeDataHandle;
 import com.imooc.lib_network.listener.DisposeDataListener;
@@ -39,16 +38,6 @@ public class RequestCenter {
                                   Class<?> clazz) {
         CommonOkHttpClient.get(CommonRequest.
                 createGetRequest(url, params), new DisposeDataHandle(listener, clazz));
-    }
-
-    /**
-     * 用户登陆请求
-     */
-    public static void login(DisposeDataListener listener) {
-        RequestParams params = new RequestParams();
-        params.put("mb", "18734924592");
-        params.put("pwd", "999999q");
-        RequestCenter.getRequest(HttpConstants.LOGIN, params, listener, User.class);
     }
 
     /**

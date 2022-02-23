@@ -32,8 +32,6 @@
             android:name=".view.home.HomeActivity"
             android:launchMode="singleTask" />
 
-        <activity android:name=".view.login.LoginActivity" />
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

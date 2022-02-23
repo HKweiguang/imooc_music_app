@@ -1,13 +1,13 @@
-package com.imooc.imooc_voice.view.login.presenter;
+package com.imooc.ft_login.presenter;
 
 import com.google.gson.Gson;
-import com.imooc.imooc_voice.api.MockData;
-import com.imooc.imooc_voice.api.RequestCenter;
-import com.imooc.imooc_voice.view.login.inter.IUserLoginPresenter;
-import com.imooc.imooc_voice.view.login.inter.IUserLoginView;
-import com.imooc.imooc_voice.view.login.manager.UserManager;
-import com.imooc.imooc_voice.view.login.user.LoginEvent;
-import com.imooc.imooc_voice.view.login.user.User;
+import com.imooc.ft_login.api.MockData;
+import com.imooc.ft_login.api.RequestCenter;
+import com.imooc.ft_login.inter.IUserLoginPresenter;
+import com.imooc.ft_login.inter.IUserLoginView;
+import com.imooc.ft_login.manager.UserManager;
+import com.imooc.lib_base.ft_login.model.LoginEvent;
+import com.imooc.lib_base.ft_login.model.user.User;
 import com.imooc.lib_network.listener.DisposeDataListener;
 
 import org.greenrobot.eventbus.EventBus;
