@@ -5,6 +5,7 @@ import android.app.Application;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.imooc.lib_audio.app.AudioHelper;
 import com.imooc.lib_share.ShareManager;
+import com.imooc.lib_video.app.VideoHelper;
 
 public class ImoocVoiceApplication extends Application {
 
@@ -19,7 +20,7 @@ public class ImoocVoiceApplication extends Application {
         super.onCreate();
         mApplication = this;
         //视频SDK初始化
-//        VideoHelper.init(this);
+        VideoHelper.init(this);
         //音频SDK初始化
         AudioHelper.init(this);
         //分享SDK初始化
