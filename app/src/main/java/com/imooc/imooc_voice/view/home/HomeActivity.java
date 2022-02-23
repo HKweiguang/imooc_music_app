@@ -1,11 +1,15 @@
 package com.imooc.imooc_voice.view.home;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -15,6 +19,7 @@ import android.widget.ImageView;
 
 import com.imooc.imooc_voice.R;
 import com.imooc.imooc_voice.model.CHANNEL;
+import com.imooc.imooc_voice.utils.Utils;
 import com.imooc.imooc_voice.view.home.adpater.HomePagerAdapter;
 import com.imooc.imooc_voice.view.login.LoginActivity;
 import com.imooc.imooc_voice.view.login.manager.UserManager;
@@ -39,10 +44,14 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 
+import lib_update.app.UpdateHelper;
+
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     private static final CHANNEL[] CHANNELS =
             new CHANNEL[]{CHANNEL.MY, CHANNEL.DISCORY, CHANNEL.FRIEND};
+
+    private UpdateReceiver mReceiver = null;
 
     /*
      * View
@@ -63,6 +72,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        registerBroadcastReceiver();
         EventBus.getDefault().register(this);
         setContentView(R.layout.activity_home);
         initView();
@@ -186,6 +196,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        unRegisterBroadcastReceiver();
     }
 
     /**
@@ -197,5 +208,31 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
         mPhotoView.setVisibility(View.VISIBLE);
         ImageLoaderManager.getInstance()
                 .displayImageForCircle(mPhotoView, UserManager.getInstance().getUser().data.photoUrl);
+    }
+
+    private void registerBroadcastReceiver() {
+        if (mReceiver == null) {
+            mReceiver = new UpdateReceiver();
+            LocalBroadcastManager.getInstance(this)
+                    .registerReceiver(mReceiver, new IntentFilter(UpdateHelper.UPDATE_ACTION));
+        }
+    }
+
+    private void unRegisterBroadcastReceiver() {
+        if (mReceiver != null) {
+            LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
+        }
+    }
+
+    /**
+     * 接收Update发送的广播
+     */
+    public class UpdateReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //启动安装页面
+            context.startActivity(
+                    Utils.getInstallApkIntent(context, intent.getStringExtra(UpdateHelper.UPDATE_FILE_KEY)));
+        }
     }
 }
