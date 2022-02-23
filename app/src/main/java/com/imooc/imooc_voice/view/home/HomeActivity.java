@@ -32,6 +32,7 @@ import com.imooc.lib_audio.mediaplayer.model.AudioBean;
 import com.imooc.lib_common_ui.base.BaseActivity;
 import com.imooc.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView;
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
+import com.imooc.lib_update.app.UpdateHelper;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -46,8 +47,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
-
-import com.imooc.lib_update.app.UpdateHelper;
 
 public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
@@ -242,7 +241,9 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                 .navigation();
     }
 
-    //启动检查更新
+    /**
+     * 启动检查更新
+     */
     private void checkUpdate() {
         UpdateHelper.checkUpdate(this);
     }
