@@ -2,10 +2,11 @@ package com.imooc.lib_common_ui.base;
 
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
 
 import com.imooc.lib_common_ui.base.constant.Constant;
 import com.imooc.lib_common_ui.utils.StatusBarUtil;

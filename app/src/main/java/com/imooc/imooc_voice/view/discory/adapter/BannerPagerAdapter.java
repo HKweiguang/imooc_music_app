@@ -1,12 +1,13 @@
 package com.imooc.imooc_voice.view.discory.adapter;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
 

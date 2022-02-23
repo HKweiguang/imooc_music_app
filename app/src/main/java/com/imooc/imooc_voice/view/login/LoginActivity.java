@@ -3,20 +3,14 @@ package com.imooc.imooc_voice.view.login;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.imooc.imooc_voice.R;
-import com.imooc.imooc_voice.api.RequestCenter;
-import com.imooc.imooc_voice.view.login.inter.IUserLoginView;
-import com.imooc.imooc_voice.view.login.manager.UserManager;
-import com.imooc.imooc_voice.view.login.presenter.UserLoginPresenter;
-import com.imooc.imooc_voice.view.login.user.LoginEvent;
-import com.imooc.imooc_voice.view.login.user.User;
-import com.imooc.lib_common_ui.base.BaseActivity;
-import com.imooc.lib_network.listener.DisposeDataListener;
+import androidx.annotation.Nullable;
 
-import org.greenrobot.eventbus.EventBus;
+import com.imooc.imooc_voice.R;
+import com.imooc.imooc_voice.view.login.inter.IUserLoginView;
+import com.imooc.imooc_voice.view.login.presenter.UserLoginPresenter;
+import com.imooc.lib_common_ui.base.BaseActivity;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, IUserLoginView {
 
