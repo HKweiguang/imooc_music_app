@@ -5,10 +5,6 @@ plugins {
 android {
     compileSdkVersion rootProject.android.compileSdkVersion
 
-    dexOptions {
-        jumboMode = true
-    }
-
     defaultConfig {
         minSdkVersion rootProject.android.minSdkVersion
         targetSdkVersion rootProject.android.targetSdkVersion
@@ -27,6 +23,10 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dexOptions {
+        jumboMode = true
     }
 }
 
