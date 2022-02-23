@@ -25,7 +25,7 @@ public class FriendRecyclerAdapter extends MultiItemTypeAdapter {
     public static final int MUSIC_TYPE = 0x01; //音乐类型
     public static final int VIDEO_TYPE = 0x02; //视频类型
 
-    private Context mContext;
+    private final Context mContext;
 
     public FriendRecyclerAdapter(Context context, List datas) {
         super(context, datas);

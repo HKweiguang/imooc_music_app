@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class IndictorView extends RelativeLayout implements ViewPager.OnPageChangeListener {
 
-    private Context mContext;
+    private final Context mContext;
 
     /*
      * view相关
@@ -40,11 +40,11 @@ public class IndictorView extends RelativeLayout implements ViewPager.OnPageChan
     private ArrayList<AudioBean> mQueue; //播放队列
 
     public IndictorView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public IndictorView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public IndictorView(Context context, AttributeSet attrs, int defStyleAttr) {

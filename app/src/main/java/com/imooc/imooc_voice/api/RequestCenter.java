@@ -1,5 +1,7 @@
 package com.imooc.imooc_voice.api;
 
+import com.imooc.imooc_voice.model.discory.BaseRecommandModel;
+import com.imooc.imooc_voice.model.discory.BaseRecommandMoreModel;
 import com.imooc.imooc_voice.model.friend.BaseFriendModel;
 import com.imooc.imooc_voice.view.login.user.User;
 import com.imooc.lib_network.CommonOkHttpClient;
@@ -56,14 +58,14 @@ public class RequestCenter {
         RequestCenter.getRequest(HttpConstants.HOME_FRIEND, null, listener, BaseFriendModel.class);
     }
 
-//    public static void requestRecommandData(DisposeDataListener listener) {
-//        RequestCenter.getRequest(HttpConstants.HOME_RECOMMAND, null, listener,
-//                BaseRecommandModel.class);
-//    }
-//
-//    public static void requestRecommandMore(DisposeDataListener listener) {
-//        RequestCenter.getRequest(HttpConstants.HOME_RECOMMAND_MORE, null, listener,
-//                BaseRecommandMoreModel.class);
-//    }
-//
+    public static void requestRecommandData(DisposeDataListener listener) {
+        RequestCenter.getRequest(HttpConstants.HOME_RECOMMAND, null, listener,
+                BaseRecommandModel.class);
+    }
+
+    public static void requestRecommandMore(DisposeDataListener listener) {
+        RequestCenter.getRequest(HttpConstants.HOME_RECOMMAND_MORE, null, listener,
+                BaseRecommandMoreModel.class);
+    }
+
 }

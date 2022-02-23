@@ -55,8 +55,8 @@ public class FriendFragment extends Fragment implements SwipeRefreshLayout.OnRef
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_friend_layout, null);
         mSwipeRefreshLayout = rootView.findViewById(R.id.refresh_layout);
-        mSwipeRefreshLayout.setColorSchemeColors(
-                getResources().getColor(android.R.color.holo_red_light));
+//        mSwipeRefreshLayout.setColorSchemeColors(
+//                getResources().getColor(android.R.color.holo_red_light));
         mSwipeRefreshLayout.setOnRefreshListener(this);
 
         mRecyclerView = rootView.findViewById(R.id.recyclerview);

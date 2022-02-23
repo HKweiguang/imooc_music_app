@@ -2,8 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:ignore="MissingDefaultResource">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,7 +16,8 @@
             android:id="@+id/photo_view"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -96,7 +96,8 @@
                 android:id="@+id/album_view"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:layout_centerVertical="true" />
+                android:layout_centerVertical="true"
+                tools:ignore="ContentDescription" />
 
             <LinearLayout
                 android:layout_width="wrap_content"

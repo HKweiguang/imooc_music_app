@@ -122,11 +122,10 @@ public class MusicPlayerActivity extends BaseActivity {
             }
         });
         findViewById(R.id.share_view).setOnClickListener(v -> shareMusic(mAudioBean.mUrl, mAudioBean.name));
-        findViewById(R.id.show_list_view).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 弹出歌单列表Dialog
-            }
+        findViewById(R.id.show_list_view).setOnClickListener(v -> {
+            // 弹出歌单列表Dialog
+            MusicListDialog dialog = new MusicListDialog(MusicPlayerActivity.this);
+            dialog.show();
         });
         mFavouriteView.setOnClickListener(v -> {
             // 收藏与否

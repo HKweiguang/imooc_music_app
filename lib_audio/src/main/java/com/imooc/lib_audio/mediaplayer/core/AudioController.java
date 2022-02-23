@@ -1,19 +1,23 @@
 package com.imooc.lib_audio.mediaplayer.core;
 
 import com.imooc.lib_audio.mediaplayer.db.GreenDaoHelper;
+import com.imooc.lib_audio.mediaplayer.events.AudioCompleteEvent;
+import com.imooc.lib_audio.mediaplayer.events.AudioErrorEvent;
 import com.imooc.lib_audio.mediaplayer.events.AudioFavouriteEvent;
 import com.imooc.lib_audio.mediaplayer.events.AudioPlayModeEvent;
 import com.imooc.lib_audio.mediaplayer.exception.AudioQueueEmptyException;
 import com.imooc.lib_audio.mediaplayer.model.AudioBean;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * 音频控制中心
- *
+ * <p>
  * 保存、处理播放列表，处理收藏音乐功能
  */
 public class AudioController {
@@ -275,5 +279,17 @@ public class AudioController {
 
     private void load(AudioBean bean) {
         mAudioPlayer.load(bean);
+    }
+
+    //插放完毕事件处理
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onAudioCompleteEvent(AudioCompleteEvent event) {
+        next();
+    }
+
+    //播放出错事件处理
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onAudioErrorEvent(AudioErrorEvent event) {
+        next();
     }
 }

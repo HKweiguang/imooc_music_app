@@ -7,6 +7,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -43,11 +44,11 @@ public class BottomMusicView extends RelativeLayout {
     private AudioBean mAudioBean;
 
     public BottomMusicView(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public BottomMusicView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public BottomMusicView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -77,12 +78,14 @@ public class BottomMusicView extends RelativeLayout {
         mRightView = rootView.findViewById(R.id.show_list_view);
 
         mPlayView.setOnClickListener(v -> AudioController.getInstance().playOrPause());
-        mRightView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
+        mRightView.setOnClickListener(v -> {
+            //显示音乐列表对话框
+            MusicListDialog dialog = new MusicListDialog(mContext);
+            dialog.show();
         });
+
+        addView(rootView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
     }
 
     @Override
