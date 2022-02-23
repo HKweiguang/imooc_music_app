@@ -231,11 +231,13 @@ public class CustomVideoView extends RelativeLayout implements MediaPlayer.OnPre
     public void onPrepared(MediaPlayer mp) {
         // 加载成功
         showPlayView();
+        mediaPlayer = mp;
         if (mediaPlayer != null) {
             mCurrentCount = 0;
-            setCurrentPlayState(STATE_PLAYING);
-            resume();
             if (listener != null) listener.onAdVideoLoadSuccess();
+            //满足自动播放条件，则直接播放
+            setCurrentPlayState(STATE_PAUSING);
+            resume();
         }
     }
 

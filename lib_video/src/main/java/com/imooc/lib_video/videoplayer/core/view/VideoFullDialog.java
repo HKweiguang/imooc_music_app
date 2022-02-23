@@ -62,7 +62,7 @@ public class VideoFullDialog extends Dialog implements CustomVideoView.ADVideoPl
     }
 
     private void initVideoView() {
-        mParentView = (RelativeLayout) findViewById(R.id.content_layout);
+        mParentView = findViewById(R.id.content_layout);
         mRootView = findViewById(R.id.root_view);
         mRootView.setOnClickListener(v -> onClickVideo());
         mRootView.setVisibility(View.INVISIBLE);

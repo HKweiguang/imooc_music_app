@@ -281,7 +281,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     /**
      * 接收Update发送的广播
      */
-    public class UpdateReceiver extends BroadcastReceiver {
+    public static class UpdateReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             //启动安装页面

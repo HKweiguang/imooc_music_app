@@ -1,11 +1,13 @@
 package com.imooc.lib_video.videoplayer.core;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.imooc.lib_video.videoplayer.core.view.CustomVideoView;
 import com.imooc.lib_video.videoplayer.core.view.VideoFullDialog;
+import com.imooc.lib_video.videoplayer.utils.Utils;
 
 public class VideoAdSlot implements CustomVideoView.ADVideoPlayerListener {
 
@@ -80,6 +82,8 @@ public class VideoAdSlot implements CustomVideoView.ADVideoPlayerListener {
 
     @Override
     public void onClickFullScreenBtn() {
+        //获取videoview在当前界面的属性
+        Bundle bundle = Utils.getViewProperty(mParentView);
         // 从容器中移除
         mParentView.removeView(mVideoView);
         VideoFullDialog dialog = new VideoFullDialog(mContext, mVideoView, mVideoUrl, mVideoView.getCurrentPosition());
@@ -96,6 +100,7 @@ public class VideoAdSlot implements CustomVideoView.ADVideoPlayerListener {
             }
         });
         dialog.setSlotListener(mSlotListener);
+        dialog.setViewBundle(bundle);
         dialog.show();
     }
 
