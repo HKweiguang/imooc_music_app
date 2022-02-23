@@ -17,7 +17,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.imooc.imooc_voice.R;
+import com.imooc.imooc_voice.constant.Constant;
 import com.imooc.imooc_voice.model.CHANNEL;
 import com.imooc.imooc_voice.utils.Utils;
 import com.imooc.imooc_voice.view.home.adpater.HomePagerAdapter;
@@ -27,7 +29,6 @@ import com.imooc.imooc_voice.view.login.user.LoginEvent;
 import com.imooc.lib_audio.app.AudioHelper;
 import com.imooc.lib_audio.mediaplayer.model.AudioBean;
 import com.imooc.lib_common_ui.base.BaseActivity;
-import com.imooc.lib_common_ui.base.constant.Constant;
 import com.imooc.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView;
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
 
@@ -234,10 +235,10 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void gotoWebView(String url) {
-//        ARouter.getInstance()
-//                .build(Constant.Router.ROUTER_WEB_ACTIVIYT)
-//                .withString("url", url)
-//                .navigation();
+        ARouter.getInstance()
+                .build(Constant.Router.ROUTER_WEB_ACTIVIYT)
+                .withString("url", url)
+                .navigation();
     }
 
     //启动检查更新

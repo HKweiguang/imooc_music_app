@@ -40,7 +40,7 @@ public final class AdBrowserActivity extends Activity {
     private AdBrowserLayout mLayout;
     private View mProgress;
     private Button mBackButton;
-    private Base64Drawables mBase64Drawables = new Base64Drawables();
+    private final Base64Drawables mBase64Drawables = new Base64Drawables();
 
     /**
      * Data
