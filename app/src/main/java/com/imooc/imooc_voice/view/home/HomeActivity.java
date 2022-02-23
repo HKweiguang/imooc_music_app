@@ -227,11 +227,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void doCameraPermission() {
-//        ARouter.getInstance().build(Constant.Router.ROUTER_CAPTURE_ACTIVIYT).navigation();
+        ARouter.getInstance().build(Constant.Router.ROUTER_CAPTURE_ACTIVIYT).navigation();
     }
 
     private void goToMusic() {
-//        ARouter.getInstance().build(Constant.Router.ROUTER_MUSIC_ACTIVIYT).navigation();
+        ARouter.getInstance().build(Constant.Router.ROUTER_MUSIC_ACTIVIYT).navigation();
     }
 
     private void gotoWebView(String url) {
