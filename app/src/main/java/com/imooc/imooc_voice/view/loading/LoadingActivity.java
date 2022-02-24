@@ -8,7 +8,7 @@ import android.os.Message;
 
 import com.imooc.imooc_voice.R;
 import com.imooc.imooc_voice.constant.Constant;
-import com.imooc.imooc_voice.view.home.HomeActivity;
+import com.imooc.lib_base.ft_home.service.impl.HomeImpl;
 import com.imooc.lib_common_ui.base.BaseActivity;
 import com.imooc.lib_pullalive.app.AliveJobService;
 
@@ -18,7 +18,7 @@ public class LoadingActivity extends BaseActivity {
     private final Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
-            startActivity(new Intent(LoadingActivity.this, HomeActivity.class));
+            HomeImpl.getInstance().startHomeActivity(LoadingActivity.this);
             finish();
         }
     };

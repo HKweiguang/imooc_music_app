@@ -59,6 +59,10 @@ dependencies {
     annotationProcessor rootProject.depsLibs.aroutercompiler
     //gson解析库
     implementation rootProject.depsLibs.gson
+
+    implementation project(':ft_login')
+    implementation project(':ft_home')
+
     //基础UI库
     implementation project(':lib_common_ui')
     //二维码扫描库

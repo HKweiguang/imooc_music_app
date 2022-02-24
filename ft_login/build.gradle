@@ -27,21 +27,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     compileOnly rootProject.depsLibs.appcompact
     compileOnly rootProject.depsLibs.design
     compileOnly rootProject.depsLibs.recyclerview
     compileOnly rootProject.depsLibs.constraint
     //eventbus类库依赖
-    implementation rootProject.depsLibs.eventbus
+    compileOnly rootProject.depsLibs.eventbus
     //gson解析库
     compileOnly rootProject.depsLibs.gson
     //arouter库

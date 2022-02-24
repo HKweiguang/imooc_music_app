@@ -108,6 +108,8 @@ public class VideoAdSlot implements CustomVideoView.ADVideoPlayerListener {
         dialog.setSlotListener(mSlotListener);
         dialog.setViewBundle(bundle);
         dialog.show();
+        // 暂停音乐播放
+        mAudioService.pauseAudio();
     }
 
     /**

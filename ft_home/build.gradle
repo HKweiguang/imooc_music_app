@@ -1,0 +1,69 @@
+plugins {
+    id 'com.android.library'
+    id 'com.alibaba.arouter'
+}
+
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+
+        //ARouter配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName(), AROUTER_GENERATE_DOC: "enable"]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly rootProject.depsLibs.appcompact
+    compileOnly rootProject.depsLibs.design
+    compileOnly rootProject.depsLibs.recyclerview
+    compileOnly rootProject.depsLibs.constraint
+    //eventbus类库依赖
+    compileOnly rootProject.depsLibs.eventbus
+    //gson解析库
+    compileOnly rootProject.depsLibs.gson
+    //arouter库
+    compileOnly(rootProject.depsLibs.arouterapi) {
+        exclude group: 'com.android.support'
+    }
+    annotationProcessor rootProject.depsLibs.aroutercompiler
+
+    compileOnly project(':lib_base')
+    //视频播放器组件
+    compileOnly project(':lib_video')
+    compileOnly project(':lib_audio')
+    //app下载更新库
+    compileOnly project(':lib_update')
+    //网络请求库
+    compileOnly project(':lib_network')
+    //基础UI库
+    compileOnly project(':lib_common_ui')
+    //图片加载库
+    compileOnly project(':lib_image_loader')
+}

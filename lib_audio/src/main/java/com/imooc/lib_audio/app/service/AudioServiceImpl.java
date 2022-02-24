@@ -1,6 +1,7 @@
 package com.imooc.lib_audio.app.service;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.imooc.lib_audio.mediaplayer.core.AudioController;
@@ -20,6 +21,6 @@ public class AudioServiceImpl implements AudioService {
 
     @Override
     public void init(Context context) {
-
+        Log.i(AudioServiceImpl.class.getSimpleName(), "init");
     }
 }

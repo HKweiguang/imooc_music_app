@@ -3,6 +3,7 @@ package com.imooc.lib_network.response;
 import android.os.Handler;
 import android.os.Looper;
 
+import com.google.gson.Gson;
 import com.imooc.lib_network.exception.OkHttpException;
 import com.imooc.lib_network.listener.DisposeDataHandle;
 import com.imooc.lib_network.listener.DisposeDataListener;
@@ -59,7 +60,7 @@ public class CommonJsonCallback implements Callback {
             if (mClass == null) {
                 mListener.onSuccess(result);
             } else {
-                Object obj = ResponseEntityToModule.parseJsonToModule(result, mClass);
+                Object obj = new Gson().fromJson(result, mClass);
                 if (obj != null) {
                     mListener.onSuccess(obj);
                 } else {
