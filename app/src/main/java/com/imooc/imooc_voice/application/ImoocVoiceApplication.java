@@ -1,15 +1,14 @@
 package com.imooc.imooc_voice.application;
 
-import android.app.Application;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.imooc.ft_audio.app.AudioHelper;
 import com.imooc.lib_share.ShareManager;
 import com.imooc.lib_update.app.UpdateHelper;
 import com.imooc.lib_video.BuildConfig;
 import com.imooc.lib_video.app.VideoHelper;
+import com.qihoo360.replugin.RePluginApplication;
 
-public class ImoocVoiceApplication extends Application {
+public class ImoocVoiceApplication extends RePluginApplication {
 
     private static ImoocVoiceApplication mApplication = null;
 

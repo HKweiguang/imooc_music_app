@@ -7,7 +7,7 @@ ext {
             applicationId    : 'com.imooc.imooc_voice',
             versionCode      : 1,
             versionName      : '1.0',
-            multiDexEnabled  : true,
+            multiDexEnabled  : false,
     ]
     depsVersion = [
             eventbus       : '3.1.1',
