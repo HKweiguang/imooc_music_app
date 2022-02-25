@@ -40,30 +40,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.depsLibs.appcompact
-    compileOnly rootProject.depsLibs.design
-    compileOnly rootProject.depsLibs.recyclerview
-    compileOnly rootProject.depsLibs.constraint
-    //eventbus类库依赖
-    compileOnly rootProject.depsLibs.eventbus
-    //gson解析库
-    compileOnly rootProject.depsLibs.gson
+    //保活库
+    implementation project(':lib_pullalive')
+    compileOnly project(':lib_common_ui')
+    compileOnly project(':lib_base')
     //arouter库
     compileOnly(rootProject.depsLibs.arouterapi) {
         exclude group: 'com.android.support'
     }
     annotationProcessor rootProject.depsLibs.aroutercompiler
-
-    compileOnly project(':lib_base')
-    //视频播放器组件
-    compileOnly project(':lib_video')
-    compileOnly project(':ft_audio')
-    //app下载更新库
-    compileOnly project(':lib_update')
-    //网络请求库
-    compileOnly project(':lib_network')
-    //基础UI库
-    compileOnly project(':lib_common_ui')
-    //图片加载库
-    compileOnly project(':lib_image_loader')
 }

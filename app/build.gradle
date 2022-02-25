@@ -62,6 +62,8 @@ dependencies {
 
     implementation project(':ft_login')
     implementation project(':ft_home')
+    implementation project(':ft_audio')
+    implementation project(':ft_loading')
 
     //基础UI库
     implementation project(':lib_common_ui')
@@ -69,8 +71,8 @@ dependencies {
     implementation project(':lib_qrcode')
     //视频播放器组件
     implementation project(':lib_video')
+    implementation project(':ft_audio')
     //音频播放器组
-    implementation project(':lib_audio')
     //自己的maven库依赖
     //implementation 'com.imooc.android:lib_audio:1.0.0-SNAPSHOT'
     //webview库

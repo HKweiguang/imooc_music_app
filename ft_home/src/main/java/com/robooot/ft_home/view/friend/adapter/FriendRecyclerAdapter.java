@@ -1,9 +1,11 @@
 package com.robooot.ft_home.view.friend.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.imooc.lib_base.ft_audio.service.impl.AudioImpl;
 import com.imooc.lib_base.ft_login.service.impl.LoginImpl;
 import com.imooc.lib_common_ui.MultiImageViewLayout;
 import com.imooc.lib_common_ui.recyclerview.MultiItemTypeAdapter;
@@ -54,8 +56,7 @@ public class FriendRecyclerAdapter extends MultiItemTypeAdapter {
             holder.setText(R.id.audio_name_view, recommandBodyValue.audioBean.name);
             holder.setText(R.id.audio_author_view, recommandBodyValue.audioBean.album);
             holder.setOnClickListener(R.id.album_layout, v -> {
-                // todo 调用播放器装饰类
-//                AudioHelper.addAudio((Activity) mContext, recommandBodyValue.audioBean);
+                AudioImpl.getInstance().addAudio((Activity) mContext, recommandBodyValue.audioBean);
             });
             holder.setOnClickListener(R.id.guanzhu_view, v -> {
                 if (!LoginImpl.getInstance().hasLogin()) {

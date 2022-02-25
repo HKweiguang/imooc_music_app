@@ -1,7 +1,6 @@
 rootProject.name = "imooc_voice"
 include ':app'
 include ':lib_base'
-include ':lib_audio'
 include ':lib_common_ui'
 include ':lib_image_loader'
 include ':lib_network'
@@ -13,3 +12,5 @@ include ':lib_video'
 include ':lib_webview'
 include ':ft_login'
 include ':ft_home'
+include ':ft_audio'
+include ':ft_loading'

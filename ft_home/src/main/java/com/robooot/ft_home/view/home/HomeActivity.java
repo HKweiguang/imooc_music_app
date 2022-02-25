@@ -19,7 +19,8 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.imooc.lib_base.ft_home.model.CommonAudioBean;
+import com.imooc.lib_base.ft_audio.model.CommonAudioBean;
+import com.imooc.lib_base.ft_audio.service.impl.AudioImpl;
 import com.imooc.lib_base.ft_login.model.LoginEvent;
 import com.imooc.lib_base.ft_login.service.impl.LoginImpl;
 import com.imooc.lib_common_ui.base.BaseActivity;
@@ -107,8 +108,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559698289780&di=5146d48002250bf38acfb4c9b4bb6e4e&imgtype=0&src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20131220%2Fbki-20131220170401-1254350944.jpg",
                         "2:45"));
 
-        // todo
-//        AudioHelper.startMusicService(mLists);
+        AudioImpl.getInstance().startMusicService(mLists);
     }
 
     private void initView() {

@@ -1,7 +1,7 @@
 package com.robooot.ft_home.model.friend;
 
 import com.imooc.lib_base.BaseModel;
-import com.imooc.lib_base.ft_home.model.CommonAudioBean;
+import com.imooc.lib_base.ft_audio.model.CommonAudioBean;
 
 import java.util.ArrayList;
 
