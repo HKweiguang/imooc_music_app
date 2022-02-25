@@ -4,25 +4,25 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.util.AttributeSet;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-import android.util.AttributeSet;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SpreadView extends View {
 
-    private final Paint centerPaint; //中心圆paint
+//    private final Paint centerPaint; //中心圆paint
     private int radius = 100; //中心圆半径
     private final Paint spreadPaint; //扩散圆paint
     private float centerX;//圆心x
     private float centerY;//圆心y
-    private int distance = 5; //每次圆递增间距
+    private int distance = 3; //每次圆递增间距
     private int maxRadius = 80; //最大圆半径
-    private final int delayMilliseconds = 6;//扩散延迟间隔，越大扩散越慢
+    private final int delayMilliseconds = 12;//扩散延迟间隔，越大扩散越慢
     private final List<Integer> spreadRadius = new ArrayList<>();//扩散圆层级数，元素为扩散的距离
     private final List<Integer> alphas = new ArrayList<>();//对应每层圆的透明度
 
@@ -46,9 +46,9 @@ public class SpreadView extends View {
         distance = a.getInt(R.styleable.SpreadView_spread_distance, distance);
         a.recycle();
 
-        centerPaint = new Paint();
-        centerPaint.setColor(centerColor);
-        centerPaint.setAntiAlias(true);
+//        centerPaint = new Paint();
+//        centerPaint.setColor(centerColor);
+//        centerPaint.setAntiAlias(true);
         //最开始不透明且扩散距离为0
         alphas.add(255);
         spreadRadius.add(0);
@@ -72,11 +72,19 @@ public class SpreadView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //中间的圆
-        canvas.drawCircle(centerX, centerY, radius, centerPaint);
+//        canvas.drawCircle(centerX, centerY, radius, centerPaint);
 
         // 绘制所有扩散圆并计算下次绘制参数
         for (int i = 0; i < spreadRadius.size(); i++) {
             int alpha = alphas.get(i);
+            // 透明度为0的删除
+            if (alpha == 0) {
+                alphas.remove(i);
+                spreadRadius.remove(i);
+                i--;
+                continue;
+            }
+
             spreadPaint.setAlpha(alpha);
             int width = spreadRadius.get(i);
 
@@ -84,29 +92,18 @@ public class SpreadView extends View {
             canvas.drawCircle(centerX, centerY, radius + width, spreadPaint);
 
             //每次扩散圆半径递增，圆透明度递减
-            if (alpha > 0 && width < 300) {
-                alpha = Math.max((alpha - distance), 0);
+            alpha = Math.max((alpha - distance), 0);
 //                alpha = (alpha - distance) > 0 ? (alpha - distance) : 1;
-                alphas.set(i, alpha);
-                spreadRadius.set(i, width + distance);
-            }
+            alphas.set(i, alpha);
+            spreadRadius.set(i, width + distance);
         }
 
-        for (int i = 0; i < spreadRadius.size(); i++) {
-            int alpha = alphas.get(i);
-            if (alpha == 0) {
-                alphas.remove(i);
-                spreadRadius.remove(i);
-                i--;
-            }
-        }
-
-        //当最外层扩散圆半径达到最大半径时添加新扩散圆
-        // 当上一个扩散圆达到最大半径时添加新扩散圆
+        // 当上一个扩散圆达到扩散半径时添加新扩散圆
         if (spreadRadius.get(spreadRadius.size() - 1) > maxRadius) {
             spreadRadius.add(0);
             alphas.add(255);
         }
+
         //超过8个扩散圆，删除最先绘制的圆，即最外层的圆
         if (spreadRadius.size() >= 8) {
             alphas.remove(0);
