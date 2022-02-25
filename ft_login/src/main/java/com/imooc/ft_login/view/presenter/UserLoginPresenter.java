@@ -1,10 +1,10 @@
-package com.imooc.ft_login.presenter;
+package com.imooc.ft_login.view.presenter;
 
 import com.google.gson.Gson;
 import com.imooc.ft_login.api.MockData;
 import com.imooc.ft_login.api.RequestCenter;
-import com.imooc.ft_login.inter.IUserLoginPresenter;
-import com.imooc.ft_login.inter.IUserLoginView;
+import com.imooc.ft_login.view.inter.IUserLoginPresenter;
+import com.imooc.ft_login.view.inter.IUserLoginView;
 import com.imooc.ft_login.manager.UserManager;
 import com.imooc.lib_base.ft_login.model.LoginEvent;
 import com.imooc.lib_base.ft_login.model.user.User;
@@ -35,7 +35,7 @@ public class UserLoginPresenter implements IUserLoginPresenter, DisposeDataListe
         User user = (User) responseObj;
         UserManager.getInstance().saveUser(user);
         //发送登陆Event
-        EventBus.getDefault().post(new LoginEvent());
+//        EventBus.getDefault().post(new LoginEvent());
         mIView.finishActivity();
     }
 

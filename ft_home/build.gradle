@@ -67,3 +67,7 @@ dependencies {
     //图片加载库
     compileOnly project(':lib_image_loader')
 }
+
+dependencies {
+    implementation 'com.qihoo360.replugin:replugin-host-lib:2.3.3'
+}

@@ -2,6 +2,7 @@ package com.robooot.ft_home.view.friend.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -13,6 +14,7 @@ import com.imooc.lib_common_ui.recyclerview.base.ItemViewDelegate;
 import com.imooc.lib_common_ui.recyclerview.base.ViewHolder;
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
 import com.imooc.lib_video.videoplayer.core.VideoAdContext;
+import com.qihoo360.replugin.RePlugin;
 import com.robooot.ft_home.R;
 import com.robooot.ft_home.model.friend.FriendBodyValue;
 
@@ -59,9 +61,9 @@ public class FriendRecyclerAdapter extends MultiItemTypeAdapter {
                 AudioImpl.getInstance().addAudio((Activity) mContext, recommandBodyValue.audioBean);
             });
             holder.setOnClickListener(R.id.guanzhu_view, v -> {
-                if (!LoginImpl.getInstance().hasLogin()) {
-                    LoginImpl.getInstance().login(mContext);
-                }
+                Intent intent = RePlugin.createIntent("ft_login", "com.imooc.ft_login.view.LoginActivity");
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                RePlugin.startActivity(mContext, intent);
             });
             ImageView avatar = holder.getView(R.id.photo_view);
             ImageLoaderManager.getInstance().displayImageForCircle(avatar, recommandBodyValue.avatr);

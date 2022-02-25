@@ -27,6 +27,7 @@ import com.imooc.lib_common_ui.base.BaseActivity;
 import com.imooc.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView;
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
 import com.imooc.lib_update.app.UpdateHelper;
+import com.qihoo360.replugin.RePlugin;
 import com.robooot.ft_home.R;
 import com.robooot.ft_home.constant.Constant;
 import com.robooot.ft_home.model.CHANNEL;
@@ -194,13 +195,15 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             finish();
             System.exit(0);
         }
-
         if (id == R.id.unloggin_layout) {
-            if (!LoginImpl.getInstance().hasLogin()) {
-                LoginImpl.getInstance().login(this);
-            } else {
-                mDrawerLayout.closeDrawer(Gravity.LEFT);
-            }
+            Intent intent = RePlugin.createIntent("ft_login", "com.imooc.ft_login.view.LoginActivity");
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            RePlugin.startActivity(this, intent);
+//            if (!LoginImpl.getInstance().hasLogin()) {
+//                LoginImpl.getInstance().login(this);
+//            } else {
+//                mDrawerLayout.closeDrawer(Gravity.LEFT);
+//            }
         }
         if (id == R.id.toggle_view) {
             if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {

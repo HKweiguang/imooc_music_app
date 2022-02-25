@@ -1,4 +1,4 @@
-package com.imooc.ft_login;
+package com.imooc.ft_login.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,11 +7,13 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import com.imooc.ft_login.inter.IUserLoginView;
-import com.imooc.ft_login.presenter.UserLoginPresenter;
-import com.imooc.lib_common_ui.base.BaseActivity;
+import com.imooc.ft_login.R;
+import com.imooc.ft_login.view.inter.IUserLoginView;
+import com.imooc.ft_login.view.presenter.UserLoginPresenter;
+import com.qihoo360.replugin.loader.a.PluginActivity;
+import com.qihoo360.replugin.loader.a.PluginFragmentActivity;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener, IUserLoginView {
+public class LoginActivity extends PluginActivity implements View.OnClickListener, IUserLoginView {
 
     public static void start(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);

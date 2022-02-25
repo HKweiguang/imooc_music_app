@@ -74,7 +74,7 @@ dependencies {
     //gson解析库
     implementation rootProject.depsLibs.gson
 
-    implementation project(':ft_login')
+//    implementation project(':ft_login')
     implementation project(':ft_home')
     implementation project(':ft_audio')
     implementation project(':ft_loading')
