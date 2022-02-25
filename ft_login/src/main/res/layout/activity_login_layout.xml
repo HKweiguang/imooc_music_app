@@ -14,8 +14,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:spread_delay_milliseconds="150"
-            app:spread_distance="1"
-            app:spread_max_radius="120"
+            app:spread_distance="3"
+            app:spread_max_radius="90"
             app:spread_radius="100" />
 
         <com.imooc.lib_common_ui.circle_image_view.CircleImageView
