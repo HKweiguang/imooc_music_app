@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.library'
+    id 'com.android.application'
     id 'com.alibaba.arouter'
 }
 
@@ -8,10 +8,12 @@ android {
     buildToolsVersion rootProject.android.buildToolsVersion
 
     defaultConfig {
+        applicationId 'com.imooc.ft_home'
         minSdkVersion rootProject.android.minSdkVersion
         targetSdkVersion rootProject.android.targetSdkVersion
         versionCode rootProject.android.versionCode
         versionName rootProject.android.versionName
+        multiDexEnabled rootProject.android.multiDexEnabled
 
         //ARouter配置
         javaCompileOptions {
@@ -40,34 +42,43 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.depsLibs.appcompact
-    compileOnly rootProject.depsLibs.design
-    compileOnly rootProject.depsLibs.recyclerview
-    compileOnly rootProject.depsLibs.constraint
+    implementation rootProject.depsLibs.appcompact
+    implementation rootProject.depsLibs.design
+    implementation rootProject.depsLibs.recyclerview
+    implementation rootProject.depsLibs.constraint
     //eventbus类库依赖
-    compileOnly rootProject.depsLibs.eventbus
+    implementation rootProject.depsLibs.eventbus
     //gson解析库
-    compileOnly rootProject.depsLibs.gson
+    implementation rootProject.depsLibs.gson
     //arouter库
-    compileOnly(rootProject.depsLibs.arouterapi) {
+    implementation(rootProject.depsLibs.arouterapi) {
         exclude group: 'com.android.support'
     }
     annotationProcessor rootProject.depsLibs.aroutercompiler
 
-    compileOnly project(':lib_base')
+    implementation project(':lib_base')
     //视频播放器组件
-    compileOnly project(':lib_video')
-    compileOnly project(':ft_audio')
+    implementation project(':lib_video')
+    implementation project(':ft_audio')
     //app下载更新库
-    compileOnly project(':lib_update')
+    implementation project(':lib_update')
     //网络请求库
-    compileOnly project(':lib_network')
+    implementation project(':lib_network')
     //基础UI库
-    compileOnly project(':lib_common_ui')
+    implementation project(':lib_common_ui')
     //图片加载库
-    compileOnly project(':lib_image_loader')
+    implementation project(':lib_image_loader')
 }
 
 dependencies {
     implementation 'com.qihoo360.replugin:replugin-host-lib:2.3.3'
+}
+
+// 引入插件
+apply plugin: 'replugin-plugin-gradle'
+
+repluginPluginConfig {
+    pluginName = 'ft_home' // 定义插件名
+    hostApplicationId = rootProject.android.applicationId // 宿主ApplicationId
+    hostAppLauncherActivity = 'com.robooot.ft_loading.view.loading.LoadingActivity' // 宿主工程启动Activity
 }
