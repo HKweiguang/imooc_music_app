@@ -19,6 +19,7 @@ public class LoginImpl {
 //    protected LoginService mLoginService;
 
     private final IBinder binder;
+    private ILoginService loginService;
 
     private static volatile LoginImpl instance = null;
 
@@ -36,6 +37,9 @@ public class LoginImpl {
     private LoginImpl() {
 //        ARouter.getInstance().inject(this);
         binder = RePlugin.fetchBinder(LoginPluginConfig.PLUGIN_NAME, LoginPluginConfig.KEY_INTERFACE);
+        if (binder != null) {
+            loginService = ILoginService.Stub.asInterface(binder);
+        }
     }
 
     public void login(Context context) {
@@ -49,7 +53,7 @@ public class LoginImpl {
 //        return mLoginService.hasLogin();
         if (binder == null) return false;
 
-        ILoginService loginService = ILoginService.Stub.asInterface(binder);
+//        ILoginService loginService = ILoginService.Stub.asInterface(binder);
         try {
             return loginService.hasLogin();
         } catch (RemoteException e) {
@@ -62,7 +66,7 @@ public class LoginImpl {
 //        mLoginService.removeUser();
         if (binder == null) return;
 
-        ILoginService loginService = ILoginService.Stub.asInterface(binder);
+//        ILoginService loginService = ILoginService.Stub.asInterface(binder);
         try {
             loginService.removeUser();
         } catch (RemoteException e) {
@@ -73,7 +77,7 @@ public class LoginImpl {
     public User getUserInfo() {
         if (binder == null) return null;
 
-        ILoginService loginService = ILoginService.Stub.asInterface(binder);
+//        ILoginService loginService = ILoginService.Stub.asInterface(binder);
         try {
             return loginService.getUserinfo();
         } catch (RemoteException e) {
