@@ -10,10 +10,9 @@ import androidx.annotation.Nullable;
 import com.imooc.ft_login.R;
 import com.imooc.ft_login.view.inter.IUserLoginView;
 import com.imooc.ft_login.view.presenter.UserLoginPresenter;
-import com.qihoo360.replugin.loader.a.PluginActivity;
-import com.qihoo360.replugin.loader.a.PluginFragmentActivity;
+import com.imooc.lib_common_ui.base.PluginBaseActivity;
 
-public class LoginActivity extends PluginActivity implements View.OnClickListener, IUserLoginView {
+public class LoginActivity extends PluginBaseActivity implements View.OnClickListener, IUserLoginView {
 
     public static void start(Context context) {
         Intent intent = new Intent(context, LoginActivity.class);
@@ -27,7 +26,7 @@ public class LoginActivity extends PluginActivity implements View.OnClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_layout);
         //初始化P层
-        mUserLoginPresenter = new UserLoginPresenter(this);
+        mUserLoginPresenter = new UserLoginPresenter(this, this);
         findViewById(R.id.login_view).setOnClickListener(this);
     }
 

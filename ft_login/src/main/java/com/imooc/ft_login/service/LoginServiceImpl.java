@@ -6,8 +6,8 @@ import android.util.Log;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.imooc.ft_login.view.LoginActivity;
 import com.imooc.ft_login.manager.UserManager;
-import com.imooc.lib_base.ft_login.model.user.User;
 import com.imooc.lib_base.ft_login.service.LoginService;
+import com.imooc.lib_base.service.login.user.User;
 
 @Route(path = "/login/login_service")
 public class LoginServiceImpl implements LoginService {

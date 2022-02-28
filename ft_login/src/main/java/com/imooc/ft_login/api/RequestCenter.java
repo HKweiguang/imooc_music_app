@@ -1,6 +1,6 @@
 package com.imooc.ft_login.api;
 
-import com.imooc.lib_base.ft_login.model.user.User;
+import com.imooc.lib_base.service.login.user.User;
 import com.imooc.lib_network.CommonOkHttpClient;
 import com.imooc.lib_network.listener.DisposeDataHandle;
 import com.imooc.lib_network.listener.DisposeDataListener;

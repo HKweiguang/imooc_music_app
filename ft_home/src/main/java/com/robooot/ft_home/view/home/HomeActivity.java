@@ -19,15 +19,16 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.google.gson.Gson;
 import com.imooc.lib_base.ft_audio.model.CommonAudioBean;
-import com.imooc.lib_base.ft_audio.service.impl.AudioImpl;
 import com.imooc.lib_base.ft_login.model.LoginEvent;
 import com.imooc.lib_base.ft_login.service.impl.LoginImpl;
+import com.imooc.lib_base.service.login.LoginPluginConfig;
+import com.imooc.lib_base.service.login.user.User;
 import com.imooc.lib_common_ui.base.BaseActivity;
 import com.imooc.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView;
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
 import com.imooc.lib_update.app.UpdateHelper;
-import com.qihoo360.replugin.RePlugin;
 import com.robooot.ft_home.R;
 import com.robooot.ft_home.constant.Constant;
 import com.robooot.ft_home.model.CHANNEL;
@@ -59,6 +60,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             new CHANNEL[]{CHANNEL.MY, CHANNEL.DISCORY, CHANNEL.FRIEND};
 
     private UpdateReceiver mReceiver = null;
+    private UserBroadcastReceiver userBroadcastReceiver = null;
 
     /*
      * View
@@ -109,7 +111,7 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
                         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1559698289780&di=5146d48002250bf38acfb4c9b4bb6e4e&imgtype=0&src=http%3A%2F%2Fpic.baike.soso.com%2Fp%2F20131220%2Fbki-20131220170401-1254350944.jpg",
                         "2:45"));
 
-        AudioImpl.getInstance().startMusicService(mLists);
+//        AudioImpl.getInstance().startMusicService(mLists);
     }
 
     private void initView() {
@@ -196,14 +198,11 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             System.exit(0);
         }
         if (id == R.id.unloggin_layout) {
-            Intent intent = RePlugin.createIntent("ft_login", "com.imooc.ft_login.view.LoginActivity");
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            RePlugin.startActivity(this, intent);
-//            if (!LoginImpl.getInstance().hasLogin()) {
-//                LoginImpl.getInstance().login(this);
-//            } else {
-//                mDrawerLayout.closeDrawer(Gravity.LEFT);
-//            }
+            if (!LoginImpl.getInstance().hasLogin()) {
+                LoginImpl.getInstance().login(HomeActivity.this);
+            } else {
+                mDrawerLayout.closeDrawer(Gravity.LEFT);
+            }
         }
         if (id == R.id.toggle_view) {
             if (mDrawerLayout.isDrawerOpen(Gravity.LEFT)) {
@@ -277,11 +276,20 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             LocalBroadcastManager.getInstance(this)
                     .registerReceiver(mReceiver, new IntentFilter(UpdateHelper.UPDATE_ACTION));
         }
+        if (userBroadcastReceiver == null) {
+            userBroadcastReceiver = new UserBroadcastReceiver();
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction(LoginPluginConfig.ACTION.LOGIN_SUCCESS_ACTION);
+            registerReceiver(userBroadcastReceiver, intentFilter);
+        }
     }
 
     private void unRegisterBroadcastReceiver() {
         if (mReceiver != null) {
             LocalBroadcastManager.getInstance(this).unregisterReceiver(mReceiver);
+        }
+        if (userBroadcastReceiver != null) {
+            unregisterReceiver(userBroadcastReceiver);
         }
     }
 
@@ -295,5 +303,22 @@ public class HomeActivity extends BaseActivity implements View.OnClickListener {
             context.startActivity(
                     Utils.getInstallApkIntent(context, intent.getStringExtra(UpdateHelper.UPDATE_FILE_KEY)));
         }
+    }
+
+    private class UserBroadcastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action != null && action.equals(LoginPluginConfig.ACTION.LOGIN_SUCCESS_ACTION)) {
+                updateLoginUI(intent.getStringExtra(LoginPluginConfig.ACTION.KEY_DATA));
+            }
+        }
+    }
+
+    private void updateLoginUI(String data) {
+        unLogginLayout.setVisibility(View.GONE);
+        mPhotoView.setVisibility(View.VISIBLE);
+        ImageLoaderManager.getInstance()
+                .displayImageForCircle(mPhotoView, new Gson().fromJson(data, User.class).data.photoUrl);
     }
 }

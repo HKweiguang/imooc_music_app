@@ -1,6 +1,6 @@
 package com.imooc.ft_login.manager;
 
-import com.imooc.lib_base.ft_login.model.user.User;
+import com.imooc.lib_base.service.login.user.User;
 
 public class UserManager {
 

@@ -3,7 +3,7 @@ package com.imooc.lib_base.ft_login.service;
 import android.content.Context;
 
 import com.alibaba.android.arouter.facade.template.IProvider;
-import com.imooc.lib_base.ft_login.model.user.User;
+import com.imooc.lib_base.service.login.user.User;
 
 public interface LoginService extends IProvider {
 

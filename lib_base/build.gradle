@@ -45,3 +45,8 @@ dependencies {
     }
     annotationProcessor rootProject.depsLibs.aroutercompiler
 }
+
+// 添加依赖
+dependencies {
+    compileOnly 'com.qihoo360.replugin:replugin-plugin-lib:2.3.3'
+}
