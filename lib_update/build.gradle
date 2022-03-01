@@ -28,6 +28,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     compileOnly rootProject.depsLibs.appcompact
+    compileOnly rootProject.depsLibs.gson
     compileOnly project(':lib_network')
     compileOnly project(':lib_common_ui')
 }

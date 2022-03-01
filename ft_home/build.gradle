@@ -40,8 +40,13 @@ android {
     }
 }
 
+configurations.all {
+    exclude group: 'androidx.fragment', module: 'fragment'
+}
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly files('libs/fragment.jar')
     implementation rootProject.depsLibs.appcompact
     implementation rootProject.depsLibs.design
     implementation rootProject.depsLibs.recyclerview
@@ -70,10 +75,6 @@ dependencies {
     implementation project(':lib_image_loader')
 }
 
-dependencies {
-    implementation 'com.qihoo360.replugin:replugin-host-lib:2.3.3'
-}
-
 // 引入插件
 apply plugin: 'replugin-plugin-gradle'
 
@@ -81,4 +82,9 @@ repluginPluginConfig {
     pluginName = 'ft_home' // 定义插件名
     hostApplicationId = rootProject.android.applicationId // 宿主ApplicationId
     hostAppLauncherActivity = 'com.robooot.ft_loading.view.loading.LoadingActivity' // 宿主工程启动Activity
+}
+
+// 添加依赖
+dependencies {
+    implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.3.3'
 }

@@ -4,14 +4,13 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 
+import com.google.gson.Gson;
 import com.imooc.lib_common_ui.CommonDialog;
 import com.imooc.lib_network.CommonOkHttpClient;
 import com.imooc.lib_network.listener.DisposeDataHandle;
 import com.imooc.lib_network.listener.DisposeDataListener;
 import com.imooc.lib_network.request.CommonRequest;
-import com.imooc.lib_network.utils.ResponseEntityToModule;
 import com.imooc.lib_update.R;
-
 import com.imooc.lib_update.update.UpdateService;
 import com.imooc.lib_update.update.constant.Constants;
 import com.imooc.lib_update.update.model.UpdateModel;
@@ -58,8 +57,9 @@ public final class UpdateHelper {
 
                     @Override
                     public void onFailure(Object reasonObj) {
-                        onSuccess(
-                                ResponseEntityToModule.parseJsonToModule(MockData.UPDATE_DATA, UpdateModel.class));
+//                        onSuccess(
+//                                ResponseEntityToModule.parseJsonToModule(MockData.UPDATE_DATA, UpdateModel.class));
+                        onSuccess(new Gson().fromJson(MockData.UPDATE_DATA, UpdateModel.class));
                     }
                 }, UpdateModel.class));
     }

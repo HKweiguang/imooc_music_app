@@ -1,15 +1,15 @@
 package com.imooc.lib_base.ft_home.service.impl;
 
 import android.content.Context;
+import android.content.Intent;
 
-import com.alibaba.android.arouter.facade.annotation.Autowired;
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.imooc.lib_base.ft_home.service.HomeService;
+import com.imooc.lib_base.service.home.HomePluginConfig;
+import com.qihoo360.replugin.RePlugin;
 
 public class HomeImpl {
 
-    @Autowired(name = "/home/home_service")
-    protected HomeService homeService;
+//    @Autowired(name = "/home/home_service")
+//    protected HomeService homeService;
 
     private static volatile HomeImpl instance;
 
@@ -23,10 +23,13 @@ public class HomeImpl {
     }
 
     private HomeImpl() {
-        ARouter.getInstance().inject(this);
+//        ARouter.getInstance().inject(this);
     }
 
     public void startHomeActivity(Context context) {
-        homeService.startHomeActivity(context);
+        Intent intent = RePlugin.createIntent(HomePluginConfig.PLUGIN_NAME, HomePluginConfig.PAGE.PAGE_HOME);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        RePlugin.startActivity(context, intent);
+//        homeService.startHomeActivity(context);
     }
 }

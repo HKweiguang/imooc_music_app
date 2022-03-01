@@ -1,0 +1,58 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion rootProject.android.compileSdkVersion
+    buildToolsVersion rootProject.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId 'com.imooc.ft_mine'
+        minSdkVersion rootProject.android.minSdkVersion
+        targetSdkVersion rootProject.android.targetSdkVersion
+        versionCode rootProject.android.versionCode
+        versionName rootProject.android.versionName
+        multiDexEnabled rootProject.android.multiDexEnabled
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+configurations.all {
+    exclude group: 'androidx.fragment', module: 'fragment'
+}
+
+dependencies {
+//    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    compileOnly files('libs/fragment.jar')
+    implementation rootProject.depsLibs.appcompact
+    implementation rootProject.depsLibs.design
+}
+
+// 引入插件
+apply plugin: 'replugin-plugin-gradle'
+
+repluginPluginConfig {
+    pluginName = 'ft_mine' // 定义插件名
+    hostApplicationId = rootProject.android.applicationId // 宿主ApplicationId
+    hostAppLauncherActivity = 'com.robooot.ft_loading.view.loading.LoadingActivity' // 宿主工程启动Activity
+}
+
+// 添加依赖
+dependencies {
+    implementation 'com.qihoo360.replugin:replugin-plugin-lib:2.3.3'
+}

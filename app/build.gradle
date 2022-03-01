@@ -59,10 +59,6 @@ dependencies {
     implementation rootProject.depsLibs.design
     implementation rootProject.depsLibs.recyclerview
     implementation rootProject.depsLibs.constraint
-    //eventbus类库依赖
-    implementation rootProject.depsLibs.eventbus
-    //greendao类库依赖
-    implementation rootProject.depsLibs.greendao
     //rxjava库
     implementation rootProject.depsLibs.rxjava
     implementation rootProject.depsLibs.rxandroid
@@ -75,7 +71,7 @@ dependencies {
     implementation rootProject.depsLibs.gson
 
 //    implementation project(':ft_login')
-    implementation project(':ft_home')
+//    implementation project(':ft_home')
     implementation project(':ft_audio')
     implementation project(':ft_loading')
 

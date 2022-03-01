@@ -80,7 +80,7 @@ public class MusicService extends Service implements NotificationHelper.Notifica
     @Override
     public void onNotificationInit() {
         //service与Notification绑定
-        startForeground(NOTIFICATION_ID, NotificationHelper.getInstance().getNotification());
+//        startForeground(NOTIFICATION_ID, NotificationHelper.getInstance().getNotification());
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

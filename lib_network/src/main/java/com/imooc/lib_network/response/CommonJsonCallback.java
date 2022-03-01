@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.imooc.lib_network.exception.OkHttpException;
 import com.imooc.lib_network.listener.DisposeDataHandle;
 import com.imooc.lib_network.listener.DisposeDataListener;
-import com.imooc.lib_network.utils.ResponseEntityToModule;
 
 import java.io.IOException;
 

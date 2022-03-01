@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
 
 import com.imooc.lib_common_ui.base.constant.Constant;
 import com.imooc.lib_common_ui.utils.StatusBarUtil;
