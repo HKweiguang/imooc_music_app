@@ -1,4 +1,4 @@
-package com.imooc.ft_mine;
+package com.imooc.ft_mine.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.imooc.ft_mine.R;
 
 public class MineFragment extends Fragment {
 

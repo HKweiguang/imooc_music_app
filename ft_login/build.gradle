@@ -44,17 +44,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation rootProject.depsLibs.appcompact
     implementation rootProject.depsLibs.design
-    implementation rootProject.depsLibs.recyclerview
-    implementation rootProject.depsLibs.constraint
-    //eventbus类库依赖
-    implementation rootProject.depsLibs.eventbus
     //gson解析库
     implementation rootProject.depsLibs.gson
-    //arouter库
-    implementation(rootProject.depsLibs.arouterapi) {
-        exclude group: 'com.android.support'
-    }
-    annotationProcessor rootProject.depsLibs.aroutercompiler
 
     //业务基础库
     implementation project(':lib_base')

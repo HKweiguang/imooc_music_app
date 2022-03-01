@@ -20,8 +20,12 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
+import com.imooc.ft_home.R;
+import com.imooc.ft_home.constant.Constant;
+import com.imooc.ft_home.model.CHANNEL;
+import com.imooc.ft_home.utils.Utils;
+import com.imooc.ft_home.view.home.adpater.HomePagerAdapter;
 import com.imooc.lib_base.ft_audio.model.CommonAudioBean;
-import com.imooc.lib_base.ft_login.model.LoginEvent;
 import com.imooc.lib_base.ft_login.service.impl.LoginImpl;
 import com.imooc.lib_base.service.login.LoginPluginConfig;
 import com.imooc.lib_base.service.login.user.User;
@@ -29,11 +33,6 @@ import com.imooc.lib_common_ui.base.PluginBaseActivity;
 import com.imooc.lib_common_ui.pager_indictor.ScaleTransitionPagerTitleView;
 import com.imooc.lib_image_loader.app.ImageLoaderManager;
 import com.imooc.lib_update.app.UpdateHelper;
-import com.imooc.ft_home.R;
-import com.imooc.ft_home.constant.Constant;
-import com.imooc.ft_home.model.CHANNEL;
-import com.imooc.ft_home.utils.Utils;
-import com.imooc.ft_home.view.home.adpater.HomePagerAdapter;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -43,10 +42,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerInd
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
 
 public class HomeActivity extends PluginBaseActivity implements View.OnClickListener {
@@ -55,6 +50,9 @@ public class HomeActivity extends PluginBaseActivity implements View.OnClickList
         Intent intent = new Intent(context, HomeActivity.class);
         context.startActivity(intent);
     }
+
+//    private static final CHANNEL[] CHANNELS =
+//            new CHANNEL[]{CHANNEL.DISCORY, CHANNEL.FRIEND};
 
     private static final CHANNEL[] CHANNELS =
             new CHANNEL[]{CHANNEL.MY, CHANNEL.DISCORY, CHANNEL.FRIEND};
@@ -84,7 +82,6 @@ public class HomeActivity extends PluginBaseActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        registerBroadcastReceiver();
-        EventBus.getDefault().register(this);
         setContentView(R.layout.activity_home);
         initView();
         initData();
@@ -255,19 +252,7 @@ public class HomeActivity extends PluginBaseActivity implements View.OnClickList
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
         unRegisterBroadcastReceiver();
-    }
-
-    /**
-     * 处理登陆事件
-     */
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onLoginEvent(LoginEvent event) {
-        unLogginLayout.setVisibility(View.GONE);
-        mPhotoView.setVisibility(View.VISIBLE);
-        ImageLoaderManager.getInstance()
-                .displayImageForCircle(mPhotoView, LoginImpl.getInstance().getUserInfo().data.photoUrl);
     }
 
     private void registerBroadcastReceiver() {

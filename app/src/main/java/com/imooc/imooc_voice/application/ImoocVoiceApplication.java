@@ -30,9 +30,9 @@ public class ImoocVoiceApplication extends RePluginApplication {
         UpdateHelper.init(this);
         //ARouter初始化
         if (BuildConfig.DEBUG) {
-            ARouter.openLog();
-            ARouter.openDebug();
+//            ARouter.openLog();
+//            ARouter.openDebug();
         }
-        ARouter.init(this);
+//        ARouter.init(this);
     }
 }

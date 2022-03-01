@@ -8,9 +8,6 @@ import com.qihoo360.replugin.RePlugin;
 
 public class HomeImpl {
 
-//    @Autowired(name = "/home/home_service")
-//    protected HomeService homeService;
-
     private static volatile HomeImpl instance;
 
     public static HomeImpl getInstance() {
@@ -30,6 +27,5 @@ public class HomeImpl {
         Intent intent = RePlugin.createIntent(HomePluginConfig.PLUGIN_NAME, HomePluginConfig.PAGE.PAGE_HOME);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         RePlugin.startActivity(context, intent);
-//        homeService.startHomeActivity(context);
     }
 }
